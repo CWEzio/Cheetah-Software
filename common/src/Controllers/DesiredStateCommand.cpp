@@ -56,7 +56,11 @@ void DesiredStateCommand<T>::convertToStateCommands() {
       joystickRight.setZero();
     }
   } else { // No Remote Controller
-    joystickLeft = gamepadCommand->leftStickAnalog;
+    //--------------------added----------------------------
+    joystickLeft[0] = 0.0; //Y
+    joystickLeft[1] = .5;//X front direction of the robot
+    //--------------------finish---------------------------
+    //joystickLeft = gamepadCommand->leftStickAnalog; changed
     joystickRight = gamepadCommand->rightStickAnalog;
     trigger_pressed = gamepadCommand->a;
   }
@@ -93,6 +97,7 @@ void DesiredStateCommand<T>::setCommandLimits(T minVelX_in, T maxVelX_in,
   minVelY = minVelY_in;
   maxVelY = maxVelY_in;
   minTurnRate = minTurnRate_in;
+  maxTurnRate = maxTurnRate_in;
   maxTurnRate = maxTurnRate_in;
 }
 
